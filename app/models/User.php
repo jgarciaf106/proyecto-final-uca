@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 /**
@@ -6,45 +6,42 @@
  */
 class User
 {
-	
 	use Model;
 
 	protected $table = 'users';
 
 	protected $allowedColumns = [
 
-		'email',
-		'password',
+		'email_address',
+		'full_name',
+		'password'
 	];
 
-	public function validate($data)
+
+	/**
+	 * Si el usuario existe, verifica la contraseña, si la contraseña es correcta, establezca la sesión y
+	 * devuelva verdadero, de lo contrario, devuelva falso.
+	 * 
+	 * @param email La dirección de correo electrónico del usuario
+	 * @param password La contraseña que se va a codificar.
+	 */
+	public function login($email, $password)
 	{
-		$this->errors = [];
+		$user = $this->where('email_address', $email);
 
-		if(empty($data['email']))
-		{
-			$this->errors['email'] = "Email is required";
-		}else
-		if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-		{
-			$this->errors['email'] = "Email is not valid";
-		}
-		
-		if(empty($data['password']))
-		{
-			$this->errors['password'] = "Password is required";
-		}
-		
-		if(empty($data['terms']))
-		{
-			$this->errors['terms'] = "Please accept the terms and conditions";
-		}
+		print_r($user);
 
-		if(empty($this->errors))
-		{
-			return true;
-		}
+		if ($user) {
+			if (password_verify($password, $user['password'])) {
 
-		return false;
+				$_SESSION['login'] = true;
+				$_SESSION['user'] = $user;
+
+				return true;
+			} else {
+				$_SESSION['login'] = false;
+				return false;
+			}
+		}
 	}
 }

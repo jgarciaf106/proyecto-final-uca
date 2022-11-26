@@ -1,22 +1,22 @@
 <?php
 
-class Main 
+
+class Landing
 {
     use Controller;
 
     public function index()
     {
         $mascota = new Pet();
+        $mascotas = randomize($mascota->findAll());
 
-        $mascotas = $mascota->findAll();
         $data = [
             'header' => 'header',
             'footer' => 'footer',
             'mascotas' => $mascotas
         ];
-
-        
-        $this->view('home', $data);
-        
+       
+        $this->view('landing', $data);
     }
+
 }

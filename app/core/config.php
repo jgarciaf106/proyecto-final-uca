@@ -3,13 +3,13 @@
 if($_SERVER['SERVER_NAME'] == 'localhost')
 {
 	/** database config **/
-	define('DBNAME', 'my_db');
+	define('DBNAME', 'uca');
 	define('DBHOST', 'localhost');
 	define('DBUSER', 'root');
-	define('DBPASS', '');
-	define('DBDRIVER', '');
+	define('DBPASS', 'root');
+	define('DBDRIVER', 'MySQLi');
 	
-	define('ROOT', 'http://localhost/mvc/public');
+	define('ROOT', 'http://localhost/uca/public/');
 
 }else
 {
@@ -24,8 +24,8 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 
 }
 
-define('APP_NAME', "My Webiste");
-define('APP_DESC', "Best website on the planet");
+define('APP_NAME', "Proyecto Final UCA");
+define('APP_DESC', "Projecto Final III Cuatrimestre 2022, Programacion III.");
 
 /** true means show errors **/
 define('DEBUG', true);
