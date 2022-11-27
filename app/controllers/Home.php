@@ -1,6 +1,6 @@
 <?php
 
-class Main 
+class Home 
 {
     use Controller;
 
@@ -8,14 +8,13 @@ class Main
     {
         $mascota = new Pet();
 
-        $mascotas = $mascota->findAll();
+        $mascotas = $mascota->findAll('fecha_carga','desc');
         $data = [
             'header' => 'header',
             'footer' => 'footer',
             'mascotas' => $mascotas
         ];
 
-        
         $this->view('home', $data);
         
     }

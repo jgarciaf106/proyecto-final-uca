@@ -1,107 +1,53 @@
-<?php 
+<?php
 
 /**
  * Main Model trait
  */
-Trait Model
+trait Model
 {
 	use Database;
 
-	protected $limit 		= 10;
-	protected $offset 		= 0;
-	protected $order_type 	= "desc";
-	protected $order_column = "id";
 	public $errors 		= [];
 
-	public function findAll()
-	{
-	 
-		$query = "select * from $this->table order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
 
+	public function findAll($order, $order_type)
+	{
+		$query = "SELECT * FROM " . $this->table . " ORDER BY " . $order . " " . $order_type;
 		return $this->query($query);
 	}
 
-	public function where($data, $data_not = [])
+
+	public function where($column, $operator, $value)
 	{
-		$keys = array_keys($data);
-		$keys_not = array_keys($data_not);
-		$query = "select * from $this->table where ";
-
-		foreach ($keys as $key) {
-			$query .= $key . " = :". $key . " && ";
-		}
-
-		foreach ($keys_not as $key) {
-			$query .= $key . " != :". $key . " && ";
-		}
-		
-		$query = trim($query," && ");
-
-		$query .= " order by $this->order_column $this->order_type limit $this->limit offset $this->offset";
-		$data = array_merge($data, $data_not);
-
-		return $this->query($query, $data);
+		$query = "SELECT * FROM " . $this->table . " WHERE " . $column . " " . $operator . " ?";
+		return $this->query($query, [$value]);
 	}
 
-	public function first($data, $data_not = [])
+	//function to get first record input email value to query database limit 1
+	public function first($data)
 	{
-		$keys = array_keys($data);
-		$keys_not = array_keys($data_not);
-		$query = "select * from $this->table where ";
-
-		foreach ($keys as $key) {
-			$query .= $key . " = :". $key . " && ";
-		}
-
-		foreach ($keys_not as $key) {
-			$query .= $key . " != :". $key . " && ";
-		}
-		
-		$query = trim($query," && ");
-
-		$query .= " limit $this->limit offset $this->offset";
-		$data = array_merge($data, $data_not);
-		
-		$result = $this->query($query, $data);
-		if($result)
-			return $result[0];
-
-		return false;
+		$query = "SELECT * FROM " . $this->table . " WHERE " . key($data) . " = ? LIMIT 1";
+		return $this->query($query, [$data[key($data)]]);
 	}
+	
 
+	// function insert value in data base receive array and use query from database
 	public function insert($data)
 	{
-		
-		/** remove unwanted data **/
-		if(!empty($this->allowedColumns))
-		{
-			foreach ($data as $key => $value) {
-				
-				if(!in_array($key, $this->allowedColumns))
-				{
-					unset($data[$key]);
-				}
-			}
-		}
-
-		$keys = array_keys($data);
-
-		$query = "insert into $this->table (".implode(",", $keys).") values (:".implode(",:", $keys).")";
-		$this->query($query, $data);
-
-		return false;
+		$columns = implode(", ", array_keys($data));
+		$values = implode(", ", array_fill(0, count($data), "?"));
+		$query = "INSERT INTO " . $this->table . " (" . $columns . ") VALUES (" . $values . ")";
+		return $this->query($query, array_values($data));
 	}
 
 	public function update($id, $data, $id_column = 'id')
 	{
 
 		/** remove unwanted data **/
-		if(!empty($this->allowedColumns))
-		{
+		if (!empty($this->allowedColumns)) {
 			foreach ($data as $key => $value) {
-				
-				if(!in_array($key, $this->allowedColumns))
-				{
+
+				if (!in_array($key, $this->allowedColumns)) {
 					unset($data[$key]);
 				}
 			}
@@ -111,10 +57,10 @@ Trait Model
 		$query = "update $this->table set ";
 
 		foreach ($keys as $key) {
-			$query .= $key . " = :". $key . ", ";
+			$query .= $key . " = :" . $key . ", ";
 		}
 
-		$query = trim($query,", ");
+		$query = trim($query, ", ");
 
 		$query .= " where $id_column = :$id_column ";
 
@@ -122,7 +68,6 @@ Trait Model
 
 		$this->query($query, $data);
 		return false;
-
 	}
 
 	public function delete($id, $id_column = 'id')
@@ -133,8 +78,5 @@ Trait Model
 		$this->query($query, $data);
 
 		return false;
-
 	}
-
-	
 }

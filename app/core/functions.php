@@ -1,12 +1,15 @@
-<?php 
+<?php
 
 function redirect($path)
 {
-	header("Location: " . ROOT."/".$path);
-	die;
+	if (headers_sent()) {
+		echo "<script> location.replace('" . ROOT . $path . "'); </script>";
+		die();
+	} else {
+		exit(header("Location: " . ROOT . $path));
+	}
 }
 
-// function to ramdomize arra and return 3 values
 function randomize($array)
 {
 	$keys = array_keys($array);
@@ -17,3 +20,4 @@ function randomize($array)
 	}
 	return (array) $random;
 }
+

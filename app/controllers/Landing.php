@@ -1,6 +1,5 @@
 <?php
 
-
 class Landing
 {
     use Controller;
@@ -8,7 +7,7 @@ class Landing
     public function index()
     {
         $mascota = new Pet();
-        $mascotas = randomize($mascota->findAll());
+        $mascotas = randomize($mascota->findAll("id", "asc"));
 
         $data = [
             'header' => 'header',

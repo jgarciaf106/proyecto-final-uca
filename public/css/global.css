@@ -4986,6 +4986,7 @@ fieldset:disabled .btn {
 }
 
 .navbar {
+  background-color: #FFFFFF;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5002,6 +5003,7 @@ fieldset:disabled .btn {
   padding-right: 1rem;
   padding-bottom: 1rem;
   padding-left: 1rem;
+  z-index: 1100;
   
 }
 
@@ -19701,7 +19703,7 @@ iframe {
 |   Custom circle
 -----------------------------------------------*/
 .circle-dashed {
-  border: 1px dashed #747DEF;
+  border: 1px dashed #FF9900;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -19712,9 +19714,10 @@ iframe {
   -ms-flex-pack: center;
   justify-content: center;
   border-radius: 50%;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
+
 
 /*-----------------------------------------------
 |   Miscellaneous

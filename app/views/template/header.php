@@ -21,30 +21,60 @@
                 <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
 
                     <?php
-                    if ($_SERVER['REQUEST_URI'] !=  substr(ROOT,-12)) {
+                    switch (true) {
+                        case $_SERVER['REQUEST_URI'] ==  substr(ROOT, -12):
                     ?>
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalAdoptar" aria-current="page" href="#feature">Adoptar</a></li>
-                        <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalAdoptar" aria-current="page" href="#feature">Publicar</a></li>
-                        <div class="d-flex ms-lg-4">
-                            <a class="btn btn-warning ms-3" href="<?php ROOT ?>">Salir</a>
-                        </div>
-                    </ul>
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item mt-1"><a class="nav-link" aria-current="page" href="<?= ROOT ?>login">Adoptar</a></li>
+                            </ul>
+                            <div class="d-flex ms-lg-4"><a class="btn btn-secondary-outline" href="<?= ROOT ?>login"> Ingresar</a><a class="btn btn-warning ms-3" href="<?= ROOT ?>signup">Registro</a>
+                            </div>
 
-                    <?php
-                    } else {
-                    ?>
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalAdoptar" aria-current="page" href="#feature">Adoptar</a></li>
-                        </ul>
-                        <div class="d-flex ms-lg-4"><a class="btn btn-secondary-outline" data-bs-toggle="modal" data-bs-target="#modalIngresar" href="#!"> Ingresar</a><a class="btn btn-warning ms-3" data-bs-toggle="modal" data-bs-target="#modalRegistro" href="#!">Registro</a>
-                        </div>
+                        <?php
+                            break;
+                        case str_contains($_SERVER['REQUEST_URI'], 'login'):
+                        ?>
+                            <ul class="navbar-nav ms-auto">
+                                <div class="d-flex ms-lg-4">
+                                    <a class="btn btn-warning ms-3" href="<?= ROOT ?>">Inicio</a>
+                                </div>
+                            </ul>
 
+                        <?php
+                            break;
+                        case str_contains($_SERVER['REQUEST_URI'], 'signup'):
+                        ?>
+                            <ul class="navbar-nav ms-auto">
+                                <div class="d-flex ms-lg-4">
+                                    <a class="btn btn-warning ms-3" href="<?= ROOT ?>">Inicio</a>
+                                </div>
+                            </ul>
+
+                        <?php
+                            break;
+                        default:
+                        ?>
+                            <ul class="navbar-nav ms-auto">
+                                <li class="nav-item mt-1"><a class="nav-link" aria-current="page" href="<?= ROOT ?>home">Adoptar</a></li>
+                                <li class="nav-item mt-1"><a class="nav-link" aria-current="page" href="<?= ROOT ?>post">Publicar</a></li>
+
+                                <div class="d-flex ms-lg-4 dropdown">
+                                    <a class="btn btn-warning ms-3 " data-bs-toggle="dropdown" aria-expanded="false" style="width:50px;height:50px;padding:10px 16px;font-size:18px;line-height:1.33;border-radius:25px">
+                                        <?= substr($_SESSION['USER'][0]->full_name, 0, 1) ?>
+                                    </a>
+                                    <ul class="dropdown-menu" style="width: 20rem;">
+                                        <li><strong>&nbsp;Ingreso como:</strong> <?= $_SESSION['USER'][0]->email_address ?> </li>
+                                        <li><strong>&nbsp;Nombre:</strong> <?= $_SESSION['USER'][0]->full_name ?> </li>
+                                        <li><strong>&nbsp;Correo:</strong> <?= $_SESSION['USER'][0]->email_address ?></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="<?= ROOT ?>mypost">Mis Publicaciones</a></li>
+                                        <li><a class="dropdown-item" href="<?= ROOT ?>">Cerrar Sesion</a></li>
+                                    </ul>
+                                </div>
+                            </ul>
                     <?php
                     }
                     ?>
-
-
                 </div>
             </div>
         </nav>

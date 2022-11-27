@@ -1,6 +1,6 @@
 <?php 
 
-class Adopt {
+class Mypost {
 
     use Controller;
 
@@ -12,7 +12,8 @@ class Adopt {
             'footer' => 'footer'
         ];
        
-        $this->view('adopt', $data);
+        $this->view('mypost', $data);
     }
+
 
 }

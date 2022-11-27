@@ -1,7 +1,7 @@
 <?php
 /* Un condicional que verifica si el usuario fue creado o si el usuario ya existe. Mostrando una alerta para cada escenerio*/
-if (isset($msg)) {
-    if ($msg == 'Created') {
+if (isset($_SESSION['USER'])) {
+    if ($_SESSION['USER'] == 'Created') {
 ?>
         <script type='text/javascript'>
             Swal.fire({
@@ -13,7 +13,7 @@ if (isset($msg)) {
         </script>
 
     <?php
-    } else if ($msg == 'Exists') {
+    } else if ($_SESSION['USER'] == 'Exists') {
     ?>
         <script type='text/javascript'>
             Swal.fire({
@@ -24,12 +24,12 @@ if (isset($msg)) {
             })
         </script>
     <?php
-    } else if ($msg == 'Failed Login') {
+    } else if ($_SESSION['USER'] == 'Failed Login') {
     ?>
         <script type='text/javascript'>
             Swal.fire({
                 icon: 'error',
-                title: 'Correo Electronico o contraseña son incorrectos.',
+                title: 'Correo electronico o contraseña son incorrectos.',
                 showConfirmButton: false,
                 timer: 1500
             })
@@ -38,11 +38,12 @@ if (isset($msg)) {
     }
     ?>
 <?php
+    unset($_SESSION['USER']);
 }
 ?>
 
 
-<section class="pt-7">
+<section >
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg text-md-start text-center">
@@ -58,7 +59,7 @@ if (isset($msg)) {
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
                                 <p class="card-text"><?php echo $mascota->historia ?></p>
-                                <a href="#" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalAdoptar">Adoptar</a>
+                                <a href="<?= ROOT ?>login" class="btn btn-warning">Adoptar</a>
                             </div>
                         </div>
 
