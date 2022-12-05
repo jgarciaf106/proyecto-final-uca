@@ -18,13 +18,9 @@ class Signup
         if($_SERVER['REQUEST_METHOD'] == "POST")
 		{
             $user = new User();
-            $new_user = [
-                'email_address' => $_POST['inputEmail'],
-                'full_name' => $_POST['inputName'],
-                'password' => $_POST['inputPassword']
-            ];
+            $user->setCreateUserDetails($_POST);
 
-            $user_exists = $user->createUser($new_user);
+            $user_exists = $user->createUser();
 
             if($user_exists) {
                 $_SESSION['USER'] = 'Exists';

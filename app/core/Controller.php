@@ -2,18 +2,32 @@
 
 trait Controller
 {
+	protected $views = "../app/views/";
+	protected $templates = "../app/views/template/";
+	protected $allowedViews = [
+		'landing',
+		'login',
+		'signup'
+	];
 
-	public function view($name, $data = [])
+	protected $restrictedViews = [
+		'home',
+		'adopt',
+		'publish',
+		'post',
+		'mypost'
+	];
+
+	protected function renderView($name, $data)
 	{
 		if (!empty($data)) {
 			extract($data);
 		}
-
-		$viewname = "../app/views/" . $name . ".view.php";
+		$viewname = $this->views . $name . ".view.php";
 
 		if (isset($data['header']) && isset($data['footer'])) {
-			$header = "../app/views/template/" . $data['header'] . ".php";
-			$footer = "../app/views/template/" . $data['footer'] . ".php";
+			$header = $this->templates . $data['header'] . ".php";
+			$footer = $this->templates . $data['footer'] . ".php";
 			if (file_exists($header) && file_exists($viewname) && file_exists($viewname)) {
 
 				require $header;
@@ -22,9 +36,23 @@ trait Controller
 			}
 		} else if (file_exists($viewname)) {
 			require $viewname;
+		}
+	}
+
+	public function view($name, $data = [])
+	{
+		if (in_array($name, $this->allowedViews)) {
+			$this->renderView($name, $data);
 		} else {
-			$viewname = "../app/views/404.view.php";
-			require $viewname;
+			if (in_array($name, $this->restrictedViews)) {
+				if (isUserLogIn()) {
+					$this->renderView($name, $data);
+				} else {
+					$this->renderView('403', "");
+				}
+			} else {
+				$this->renderView('404', "");
+			}
 		}
 	}
 }

@@ -1,5 +1,25 @@
-<div class="tab-content p-7">
+<?php
+/* Un condicional que verifica si el usuario fue creado o si el usuario ya existe. Mostrando una alerta para cada escenerio*/
+if (isset($_SESSION['PET'])) {
+    if ($_SESSION['PET'] == 'Created') {
+?>
+        <script type='text/javascript'>
+            Swal.fire({
+                icon: 'success',
+                title: 'Mascota Publicada.',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+<?php
+    }
+}
+unset($_SESSION['PET']);
 
+?>
+
+
+<div class="tab-content p-7">
     <?php
     foreach ($mascotas as $mascota) {
     ?>
@@ -8,7 +28,10 @@
             <div class="card-body">
                 <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
                 <p class="card-text"><?php echo $mascota->historia ?></p>
-                <a href="<?= ROOT ?>adopt" class="btn btn-warning"><?php echo "Adoptar a " . $mascota->nombre  ?></a>
+                <form action="" method="post">
+                    <input type="hidden" class="btn btn-warning" name="id" value="<?php echo $mascota->id ?>">
+                    <input type="submit" class="btn btn-warning" value="<?php echo "Adoptar a " . $mascota->nombre  ?>">
+                </form>
             </div>
         </div>
 

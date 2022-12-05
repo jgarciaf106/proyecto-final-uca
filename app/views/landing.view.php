@@ -43,7 +43,7 @@ if (isset($_SESSION['USER'])) {
 ?>
 
 
-<section >
+<section>
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg text-md-start text-center">
@@ -59,7 +59,6 @@ if (isset($_SESSION['USER'])) {
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
                                 <p class="card-text"><?php echo $mascota->historia ?></p>
-                                <a href="<?= ROOT ?>login" class="btn btn-warning">Adoptar</a>
                             </div>
                         </div>
 

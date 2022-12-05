@@ -17,20 +17,16 @@ class Login
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new User();
 
-            $email = $_POST['logEmail'];
-            $password = $_POST['logPassword'];
-
-            $access_granted = $user->login($email, $password);
+            $user->setLoginDetails($_POST);
+            $access_granted = $user->login();
 
             if ($access_granted) {
-
                 $_SESSION['LOGIN'] = true;
-                $_SESSION['USER'] = $user->details(['email_address' => $email]);
-
+                $_SESSION['USER'] = $user->details();
                 redirect('home');
             } else {
                 $_SESSION['USER'] = 'Failed Login';
-                redirect('landing');
+                redirect('');
             }
         }
     }

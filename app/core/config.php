@@ -11,6 +11,9 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	
 	define('ROOT', 'http://localhost/uca/public/');
 
+	
+
+
 }else
 {
 	/** database config **/
