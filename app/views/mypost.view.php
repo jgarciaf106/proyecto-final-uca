@@ -44,13 +44,12 @@ if (isset($_SESSION['PET'])) {
                         <td><?php echo $mascota->tel_contacto ?></td>
                         <td><?php echo $mascota->fecha_carga ?></td>
                         <td>
-                            <form action="" method="post" class="px-3">
 
-                                <input type="hidden" class="btn btn-warning" name="edit_id" value="<?php echo $mascota->id ?>">
-                                <button type="submit" class="btn btn-warning mb-2">
+                            <form action="" method="post" class="" id="myForm">
+                                <input type="hidden" class="btn btn-danger" name="edit_id" value="<?php echo $mascota->id ?>">
+                                <button type="submit" class="btn btn-warning mb-2 mx-3">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </button>
-
                             </form>
 
                             <form action="" method="post" class="px-3">

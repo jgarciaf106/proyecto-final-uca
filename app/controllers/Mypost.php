@@ -31,9 +31,10 @@ class Mypost
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             
             if(isset($_POST['edit_id'])){
-                $_SESSION['petToEdit'] = $_POST['edit_id'];
-                redirect('editpost');
+
+                $_SESSION['PET_EDIT'] = $mascota->first(['id' => $_POST['edit_id']]);
             }
+            
 
             if(isset($_POST['delete_id'])){
 
