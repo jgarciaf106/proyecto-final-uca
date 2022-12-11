@@ -1,3 +1,24 @@
+<?php
+if (isset($message)) {
+    if ($message == 'Sent') {
+?>
+        <script type='text/javascript'>
+            Swal.fire({
+                icon: 'success',
+                title: 'Su solicitud fue enviada, pronto el encargado de la mascota se pondra en contacto.',
+                showConfirmButton: false,
+                timer: 2700
+            }).then(function(result) {
+                window.location.href = "<?php echo ROOT ?>home";
+
+            })
+        </script>
+<?php
+    }
+}
+
+?>
+
 <div class="container pb-10 pt-3">
     <div class="alert alert-secondary text-center" role="alert">
         Solicitud de Adopción.
@@ -25,9 +46,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <input class="btn btn-warning" type="hidden" name="adoptOwner" value="<?php echo $mascota->email_address ?>">
-                        <input class="btn btn-warning" type="hidden" name="adoptPet" value="<?php echo $mascota->nombre ?>">
-                        <input class="btn btn-warning" type="submit" value="Quiero adoptar a <?php echo $mascota->nombre ?>">
+                        <input class="btn btn-warning" type="submit" name="" value="Quiero adoptar a <?php echo $mascota->nombre ?>">
                     </div>
                 </form>
             </div>
