@@ -48,6 +48,31 @@ class User
 	}
 
 	/**
+	 * Esta función establece los valores de las propiedades de la clase en los valores de los datos de la
+	 * publicación.
+	 * 
+	 * @param post_data La matriz de datos que se publicó en el formulario.
+	 */
+	public function setUpdateUserDetails($post_data)
+	{
+		$this->email_address = $post_data['profileEmail'];
+		$this->full_name = $post_data['profileName'];
+		$this->tel_contacto = $post_data['profileTelefono'];
+		$this->password = $post_data['profilePassword'];
+	}
+
+	/**
+	 * Esta función establece los valores de las propiedades de la clase en los valores de los datos de la
+	 * publicación.
+	 * 
+	 * @param post_data La matriz de datos que se publicó en el formulario.
+	 */
+	public function setDeleteUserDetails($post_data)
+	{
+		$this->email_address = $post_data['deleteProfile'];
+	}
+
+	/**
 	 * Devuelve los datos del usuario.
 	 * 
 	 * @return El objeto de usuario.
@@ -103,6 +128,49 @@ class User
 				'password' => $this->password
 			];
 			$this->insert($new_user);
+			return false;
+		}
+	}
+
+	
+	/**
+	 * Actualiza la información del usuario en la base de datos.
+	 * 
+	 * @return un valor booleano.
+	 */
+	public function updateUser()
+	{
+		$user = $this->first(['email_address' => $this->email_address]);
+
+		if ($user) {
+			$update_user = [
+				'email_address' => $this->email_address,
+				'full_name' => $this->full_name,
+				'tel_contacto' => $this->tel_contacto,
+				'password' => $this->password
+			];
+			$this->update($user[0]->email_address, $this->table, $update_user, $column_id = 'email_address');
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+
+	/**
+	 * Elimina un usuario de la base de datos.
+	 * 
+	 * @return El valor devuelto es un valor booleano.
+	 */
+	public function deleteUser()
+	{
+		$user = $this->first(['email_address' => $this->email_address]);
+
+		if ($user) {
+			$this->delete($user[0]->email_address, $column_id = 'email_address');
+			return true;
+		} else {
 			return false;
 		}
 	}

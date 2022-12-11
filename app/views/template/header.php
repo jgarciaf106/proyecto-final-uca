@@ -69,7 +69,8 @@
                                         <li><strong>&nbsp;Nombre:</strong> <?= $_SESSION['USER'][0]->full_name ?> </li>
                                         <li><strong>&nbsp;Correo:</strong> <?= $_SESSION['USER'][0]->email_address ?></li>
                                         <li><hr class="dropdown-divider"></li>
-                                        <li><a class="dropdown-item" href="<?= ROOT ?>mypost">Mis Publicaciones</a></li>
+                                        <li><a class="dropdown-item" href="<?= ROOT ?>myprofile">Editar mi Perfil</a></li>
+                                        <li><a class="dropdown-item" href="<?= ROOT ?>mypost">Mis Publicaciones</a></li>                                        
                                         <li><a class="dropdown-item" href="<?= ROOT ?>">Cerrar Sesion</a></li>
                                     </ul>
                                 </div>

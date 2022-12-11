@@ -52,10 +52,11 @@ if (isset($_SESSION['USER'])) {
 
                     <?php
                     foreach ($mascotas as $mascota) {
+                        if($mascota->disponible != "0"){   
                     ?>
 
                         <div class="card p-3" style="width: 20rem;">
-                            <img src="<?php echo $mascota->foto ?>" class="card-img-top" alt="...">
+                            <img src="<?php echo APP . "local/" .   $mascota->foto ?>" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
                                 <p class="card-text"><?php echo $mascota->historia ?></p>
@@ -63,6 +64,7 @@ if (isset($_SESSION['USER'])) {
                         </div>
 
                     <?php
+                        }
                     }
                     ?>
 

@@ -10,6 +10,7 @@ if($_SERVER['SERVER_NAME'] == 'localhost')
 	define('DBDRIVER', 'MySQLi');
 	
 	define('ROOT', 'http://localhost/uca/public/');
+	define('APP', 'http://localhost/uca/app/');
 
 	
 

@@ -12,7 +12,7 @@ class Signup
             'footer' => 'footer'
         ];
 
-        $this->view('Signup', $data);
+        $this->view('signup', $data);
 
        
         if($_SERVER['REQUEST_METHOD'] == "POST")

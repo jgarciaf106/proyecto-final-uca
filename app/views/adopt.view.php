@@ -5,7 +5,7 @@
     <div class="col-12 p-5">
         <div class="row justify-content-center align-items-center g-2">
             <div class="col">
-                <img src="<?php echo $mascota->foto ?>" class="img-fluid" alt="..." style="height:415px; width:600px">
+                <img src="<?php echo APP . "local/" .  $mascota->foto ?>" class="img-fluid" alt="..." style="height:415px; width:600px">
             </div>
             <div class="col">
                 <form class="m-4" method="post">

@@ -15,7 +15,9 @@ trait Controller
 		'adopt',
 		'publish',
 		'post',
-		'mypost'
+		'mypost',
+		'myprofile',
+		'editmypost'
 	];
 
 	protected function renderView($name, $data)

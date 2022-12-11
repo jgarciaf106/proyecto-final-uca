@@ -85,7 +85,7 @@ trait Model
 	 * 
 	 * @return El valor devuelto es el número de filas afectadas por la última instrucción SQL.
 	 */
-	public function update($id, $data, $id_column = 'id')
+	public function update($id, $table, $data, $id_column)
 	{
 
 		/** remove unwanted data **/
@@ -99,7 +99,7 @@ trait Model
 		}
 
 		$keys = array_keys($data);
-		$query = "update $this->table set ";
+		$query = "update $table set ";
 
 		foreach ($keys as $key) {
 			$query .= $key . " = :" . $key . ", ";
@@ -109,12 +109,13 @@ trait Model
 
 		$query .= " where $id_column = :$id_column ";
 
-		$data[$id_column] = $id;
+		$data[$id_column] = $id; 
 
 		$this->query($query, $data);
 		return false;
 	}
 
+	
 	/**
 	 * Elimina un registro de la base de datos.
 	 * 
