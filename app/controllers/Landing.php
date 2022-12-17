@@ -14,8 +14,7 @@ class Landing
             'footer' => 'footer',
             'mascotas' => $mascotas
         ];
-       
+
         $this->view('landing', $data);
     }
-
 }

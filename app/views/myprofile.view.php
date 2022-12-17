@@ -35,12 +35,12 @@ if (isset($_SESSION['USER_EDIT'])) {
     </div>
     <div class="col-12 p-5">
         <div class="row justify-content-center align-items-center g-2">
-           
+
             <div class="col">
                 <form class="m-4" method="post">
                     <div class="mb-3">
                         <label for="validationCustom01" class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-control" id="validationCustom03" value="<?= $_SESSION['USER'][0]->full_name?>" name="profileName" required>
+                        <input type="text" class="form-control" id="validationCustom03" value="<?= $_SESSION['USER'][0]->full_name ?>" name="profileName" required>
                     </div>
 
                     <div class="mb-3">
@@ -68,7 +68,7 @@ if (isset($_SESSION['USER_EDIT'])) {
                     </div>
                 </form>
             </div>
-            
+
         </div>
     </div>
 </div>

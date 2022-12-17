@@ -9,8 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php ROOT ?>css/global.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    
+
+
 
 </head>
 
@@ -68,9 +68,11 @@
                                         <li><strong>&nbsp;Ingreso como:</strong> <?= $_SESSION['USER'][0]->email_address ?> </li>
                                         <li><strong>&nbsp;Nombre:</strong> <?= $_SESSION['USER'][0]->full_name ?> </li>
                                         <li><strong>&nbsp;Correo:</strong> <?= $_SESSION['USER'][0]->email_address ?></li>
-                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
                                         <li><a class="dropdown-item" href="<?= ROOT ?>myprofile">Editar mi Perfil</a></li>
-                                        <li><a class="dropdown-item" href="<?= ROOT ?>mypost">Mis Publicaciones</a></li>                                        
+                                        <li><a class="dropdown-item" href="<?= ROOT ?>mypost">Mis Publicaciones</a></li>
                                         <li><a class="dropdown-item" href="<?= ROOT ?>">Cerrar Sesion</a></li>
                                     </ul>
                                 </div>

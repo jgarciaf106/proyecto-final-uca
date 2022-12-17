@@ -1,47 +1,10 @@
 <?php
-/* Un condicional que verifica si el usuario fue creado o si el usuario ya existe. Mostrando una alerta para cada escenerio*/
-if (isset($_SESSION['USER'])) {
-    if ($_SESSION['USER'] == 'Created') {
-?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'success',
-                title: 'Usuario creado.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
+if (isset($_SESSION['UI_MSG'])) {
 
-    <?php
-    } else if ($_SESSION['USER'] == 'Exists') {
-    ?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'error',
-                title: 'El usuario ya existe.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    <?php
-    } else if ($_SESSION['USER'] == 'Failed Login') {
-    ?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'error',
-                title: 'Correo electronico o contraseña son incorrectos.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    <?php
-    }
-    ?>
-<?php
-    unset($_SESSION['USER']);
+    alerts($_SESSION['UI_MSG']);
+    unset($_SESSION['UI_MSG']);
 }
 ?>
-
 
 <section>
     <div class="container">
@@ -52,16 +15,16 @@ if (isset($_SESSION['USER'])) {
 
                     <?php
                     foreach ($mascotas as $mascota) {
-                        if($mascota->disponible != "0"){   
+                        if ($mascota->disponible != "0") {
                     ?>
 
-                        <div class="card p-3" style="width: 20rem;">
-                            <img src="<?php echo APP . "local/" .   $mascota->foto ?>" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
-                                <p class="card-text"><?php echo $mascota->historia ?></p>
+                            <div class="card p-3" style="width: 20rem;">
+                                <img src="<?php echo APP . "local/" .   $mascota->foto ?>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo $mascota->nombre ?></h5>
+                                    <p class="card-text"><?php echo $mascota->historia ?></p>
+                                </div>
                             </div>
-                        </div>
 
                     <?php
                         }

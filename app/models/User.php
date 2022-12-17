@@ -132,7 +132,7 @@ class User
 		}
 	}
 
-	
+
 	/**
 	 * Actualiza la información del usuario en la base de datos.
 	 * 

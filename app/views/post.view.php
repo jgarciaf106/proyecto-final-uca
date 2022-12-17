@@ -10,7 +10,7 @@ if (isset($_SESSION['PET'])) {
                 timer: 1500
             })
         </script>
-    <?php
+<?php
     }
     unset($_SESSION['PET']);
 }
@@ -31,12 +31,12 @@ if (isset($_SESSION['PET'])) {
 
                     <div class="mb-3">
                         <label for="validationTextarea" class="form-label">Historia de la Mascota</label>
-                        <textarea class="form-control" id="validationTextarea" name="givenHistory"  required></textarea>
+                        <textarea class="form-control" id="validationTextarea" name="givenHistory" required></textarea>
 
                     </div>
 
                     <div class="mb-3">
-                        <input type="file" class="form-control" aria-label="file example" accept="image/*"  name="givenPhoto" required>
+                        <input type="file" class="form-control" aria-label="file example" accept="image/*" name="givenPhoto" required>
                         <div class="invalid-feedback">Example invalid form file feedback</div>
                     </div>
 

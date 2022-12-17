@@ -1,31 +1,8 @@
 <?php
-if (isset($_SESSION['PET'])) {
-    if ($_SESSION['PET'] == 'Deleted') {
-?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'success',
-                title: 'La mascota publicada se elimino exitosamente.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    <?php
-    }
-    if ($_SESSION['PET'] == 'Edited') {
-    ?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'success',
-                title: 'La mascota publicada se actualizo exitosamente.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-<?php
+if (isset($_SESSION['UI_MSG'])) {
 
-    }
-    unset($_SESSION['PET']);
+    alerts($_SESSION['UI_MSG']);
+    unset($_SESSION['UI_MSG']);
 }
 ?>
 

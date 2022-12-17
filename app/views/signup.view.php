@@ -2,7 +2,7 @@
   <div class="col-md-4 p-5 shadow-sm border rounded-5 border-secondary mb-6">
     <h2 class="text-center mb-4">Formulario de Registro</h2>
     <form method="post">
-    <div class="mb-3">
+      <div class="mb-3">
         <label for="exampleInputName1" class="form-label">Nombre Completo</label>
         <input type="text" class="form-control border border-secondary" id="exampleInputName1" name="inputName">
       </div>

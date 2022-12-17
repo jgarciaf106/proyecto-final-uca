@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-spl_autoload_register(function($classname){
+spl_autoload_register(function ($classname) {
 
-	$filename = "../app/models/".ucfirst($classname).".php";
-	if(file_exists($filename))
+	$filename = "../app/models/" . ucfirst($classname) . ".php";
+	if (file_exists($filename))
 		require $filename;
 });
 

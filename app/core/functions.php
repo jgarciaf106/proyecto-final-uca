@@ -46,7 +46,35 @@ function isUserLogIn(){
 	return false;
 }
 
-// store pictures locally
+// function with a switch to execut sweert alerts
+function alerts($alertData, $timer=1500)
+{
+	$message = $alertData['message'];
+	switch ($alertData['type']) {
+		case 1:
+			echo "<script>Swal.fire({icon: 'error',title: '$message',showConfirmButton: false,timer: '$timer'})</script>";
+			break;
+		case 2:
+			echo "<script>Swal.fire({icon: 'success',title: '$message',showConfirmButton: false,timer: '$timer'})</script>";
+			break;
+		case 3:
+			echo "<script>Swal.fire({icon: 'warning',title: '$message',showConfirmButton: false,timer: '$timer'})</script>";
+			break;
+		default:
+			echo "<script>Swal.fire('Error!', 'Something went wrong', 'error')</script>";
+			break;
+	}
+}
+
+
+/**
+ * Si el archivo tiene menos de 500 kb y es un jpg, png, jpeg o gif, mueva el archivo al directorio de
+ * destino
+ * 
+ * @param image El archivo de imagen que se cargará.
+ * 
+ * @return un valor booleano.
+ */
 function storeImage($image)
 {
 	$target_dir = "/Applications/MAMP/htdocs/uca/app/local/";

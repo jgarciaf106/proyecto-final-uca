@@ -51,7 +51,13 @@ class Mypost
 
                 $mascota->setDeletePet($_POST);
                 $deleted_pet = $mascota->deletePet();
-                $deleted_pet ? $_SESSION['PET'] = 'Deleted' : $_SESSION['PET'] = 'Delete Failed';
+                $deleted_pet ? $_SESSION['UI_MSG'] = [
+                    'type' => '2',
+                    'message' => 'Mascota eliminada exitosamente.'
+                ] : $_SESSION['UI_MSG'] = [
+                    'type' => '1',
+                    'message' => 'Error al eliminar mascota.'
+                ];
 
                 redirect('mypost');
             }

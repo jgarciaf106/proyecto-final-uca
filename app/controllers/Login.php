@@ -25,7 +25,10 @@ class Login
                 $_SESSION['USER'] = $user->details();
                 redirect('home');
             } else {
-                $_SESSION['USER'] = 'Failed Login';
+                $_SESSION['UI_MSG'] = [
+                    'type' => 1,
+                    'message' => 'Usuario o contraseña incorrectos.'
+                ];
                 redirect('');
             }
         }

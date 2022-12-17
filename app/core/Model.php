@@ -109,13 +109,13 @@ trait Model
 
 		$query .= " where $id_column = :$id_column ";
 
-		$data[$id_column] = $id; 
+		$data[$id_column] = $id;
 
 		$this->query($query, $data);
 		return false;
 	}
 
-	
+
 	/**
 	 * Elimina un registro de la base de datos.
 	 * 
@@ -124,7 +124,7 @@ trait Model
 	 * 
 	 * @return El valor de retorno es falso.
 	 */
-	
+
 	public function delete($id, $id_column = 'id')
 	{
 		$query = "DELETE FROM " . $this->table . " WHERE " . $id_column . " = ?";

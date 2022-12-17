@@ -14,25 +14,24 @@ class Signup
 
         $this->view('signup', $data);
 
-       
-        if($_SERVER['REQUEST_METHOD'] == "POST")
-		{
+
+        if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $user = new User();
             $user->setCreateUserDetails($_POST);
 
             $user_exists = $user->createUser();
 
-            if($user_exists) {
-                $_SESSION['USER'] = 'Exists';
-                redirect('');
-            } else {
-                $_SESSION['USER'] = 'Created';
-                redirect('');
-            }
+            $user_exists ?
+                $_SESSION['UI_MSG'] = [
+                    'type' => 1,
+                    'message' => 'El usuario ya existe.'
+                ]
+
+                : $_SESSION['UI_MSG'] = [
+                    'type' => 2,
+                    'message' => 'Usuario creado con éxito.'
+                ];
+            redirect('');
         }
-
-        
     }
-
-   
 }
