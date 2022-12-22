@@ -26,7 +26,8 @@ class Myprofile
 					'type' => '1',
 					'message' => 'Error al editar perfil.'
 				];
-				redirect('myprofile');
+				$_SESSION['USER'] = $user->details();
+				redirect('home');
 			} elseif (isset($_POST['deleteProfile'])) {
 				$user->setDeleteUserDetails($_POST);
 				$deleted_user = $user->deleteUser();

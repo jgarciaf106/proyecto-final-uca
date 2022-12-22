@@ -1,33 +1,11 @@
 <?php
-if (isset($_SESSION['USER_EDIT'])) {
-    if ($_SESSION['USER_EDIT'] == 'Edited') {
-?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'success',
-                title: 'Perfil actualizado exitosamente.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    <?php
-    }
-    if ($_SESSION['USER_EDIT'] == 'Failed Edit') {
-    ?>
-        <script type='text/javascript'>
-            Swal.fire({
-                icon: 'success',
-                title: 'Error al actualizar el perfil, intente nuevamente.',
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-<?php
+if (isset($_SESSION['UI_MSG'])) {
 
-    }
-    unset($_SESSION['USER_EDIT']);
+    alerts($_SESSION['UI_MSG']);
+    unset($_SESSION['UI_MSG']);
 }
 ?>
+
 
 <div class="container pb-10 pt-3">
     <div class="alert alert-secondary text-center" role="alert">
